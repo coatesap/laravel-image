@@ -1,8 +1,8 @@
 {
-    "name": "folklore/image",
-    "description": "Image manipulation library for Laravel 5 based on Imagine and inspired by Croppa for easy url based manipulation",
-    "keywords": ["laravel","image","imagick","gd","imagine","watermark","gmagick","thumbnail"],
-    "homepage": "http://github.com/Folkloreatelier/laravel-image",
+    "name": "coatesap/laravel-image",
+    "description": "Image manipulation library for Laravel 8 forked from folklore/image",
+    "keywords": ["laravel","image","imagick","gd","imagine","watermark","gmagick","thumbnail","folklore"],
+    "homepage": "http://github.com/coatesap/laravel-image",
     "license": "MIT",
     "authors": [
         {
