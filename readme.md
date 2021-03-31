@@ -18,22 +18,22 @@ To create a 300x300 version of this image in black and white, you use the URL:
 
     /uploads/photo-image(300x300-crop-grayscale).jpg
     
-To help you generate the URL to an image, you can use the `FolkloreImage::url()` method
+To help you generate the URL to an image, you can use the `Image::url()` method
 
 ```php
-FolkloreImage::url('/uploads/photo.jpg',300,300,array('crop','grayscale'));
+Image::url('/uploads/photo.jpg',300,300,array('crop','grayscale'));
 ```
 
 or
 
 ```html
-<img src="<?=FolkloreImage::url('/uploads/photo.jpg',300,300,array('crop','grayscale'))?>" />
+<img src="<?=Image::url('/uploads/photo.jpg',300,300,array('crop','grayscale'))?>" />
 ```
 
-Alternatively, you can programmatically manipulate images using the `FolkloreImage::make()` method. It supports all the same options as the `FolkloreImage::url()` method.
+Alternatively, you can programmatically manipulate images using the `Image::make()` method. It supports all the same options as the `Image::url()` method.
 
 ```php
-FolkloreImage::make('/uploads/photo.jpg',array(
+Image::make('/uploads/photo.jpg',array(
 	'width' => 300,
 	'height' => 300,
 	'grayscale' => true
@@ -43,7 +43,7 @@ FolkloreImage::make('/uploads/photo.jpg',array(
 or use directly the Imagine library
 
 ```php
-$thumbnail = FolkloreImage::open('/uploads/photo.jpg')
+$thumbnail = Image::open('/uploads/photo.jpg')
 			->thumbnail(new Imagine\Image\Box(300,300));
 
 $thumbnail->effects()->grayscale();
@@ -117,7 +117,7 @@ $ composer update
 
 **4-** Add the facade to your `app/config/app.php` file
 ```php
-'FolkloreImage' => 'Folklore\Image\Facades\Image',
+'Image' => 'Folklore\Image\Facades\Image',
 ```
 
 **5-** Publish the configuration file and public files

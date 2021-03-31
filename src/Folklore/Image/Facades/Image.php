@@ -7,7 +7,7 @@ class Image extends Facade
 
 	protected static function getFacadeAccessor()
 	{
-		return 'folkloreimage';
+		return 'image';
 	}
 
 }
