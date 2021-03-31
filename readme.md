@@ -1,6 +1,5 @@
-# Mod for Laravel 6-8
+# Modifcations for Laravel 6 - 8
 - Changed Manager variable $app => $container for new [format](https://laravel.com/docs/8.x/upgrade#manager-app-property)
-- Rename 'image' to 'folkloreimage' - for using with no conflicts with [Intervention](http://image.intervention.io) (config not renamed)
 
 # Laravel Image
 Laravel Image is an image manipulation package for Laravel 4 and 5 based on the [PHP Imagine library](https://github.com/avalanche123/Imagine). It is inspired by [Croppa](https://github.com/BKWLD/croppa) as it can use specially formatted urls to do the manipulations. It supports basic image manipulations such as resize, crop, rotation and flip. It also supports effects such as negative, grayscale, gamma, colorize and blur. You can also define custom filters for greater flexibility.
