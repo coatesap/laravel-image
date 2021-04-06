@@ -226,7 +226,7 @@ class ImageManager extends Manager
     public function serve($path, $config = array())
     {
         //Use user supplied quality or the config value
-        $quality = array_get($config, 'quality', $this->container['config']['image.quality']);
+        $quality = $config['quality'] ?? $this->container['config']['image.quality'];
         //if nothing works fallback to the hardcoded value
         $quality = $quality ?: $this->defaultOptions['quality'];
 

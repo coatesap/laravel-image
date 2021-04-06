@@ -75,7 +75,7 @@ class ImageServe
 
         //Get the image content
         $saveOptions = array();
-        $quality = array_get($options, 'quality', $this->config['quality']);
+        $quality = $options['quality'] ?? $this->config['quality'];
         if ($format === 'jpeg') {
             $saveOptions['jpeg_quality'] = $quality;
         } elseif ($format === 'png') {
