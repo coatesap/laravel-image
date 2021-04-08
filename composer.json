@@ -18,13 +18,13 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^8.0",
         "illuminate/support": "^8.0",
         "guzzlehttp/guzzle": "^7.3",
         "imagine/imagine": "^1.2"
     },
     "require-dev": {
-        "fzaninotto/faker": "^1.5",
+        "fakerphp/faker": "^1.14",
         "orchestra/testbench": "^6.17",
         "mockery/mockery": "^1.4",
         "phpunit/phpunit": "^9.5",
