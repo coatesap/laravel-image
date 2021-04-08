@@ -1,4 +1,4 @@
-# Fork of folklore/image for PHP 7.4+ and Laravel 8+
+# Fork of folklore/image for PHP 8+ and Laravel 8+
 This brings the package up-to-date with the latest dependencies + modern PHPUnit tests.
 
 # Laravel Image
@@ -74,7 +74,7 @@ This package also provides some common filters ready to use ([more on this](http
 
  Laravel  | Image
 :---------|:----------
- 8.x.x    | 1.x.x
+ 8.x.x    | 3.x.x
 
 ## Installation
 
