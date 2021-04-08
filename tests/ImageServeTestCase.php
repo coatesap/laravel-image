@@ -1,7 +1,7 @@
-<?php namespace Folklore\Image\Tests;
+<?php
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Folklore\Image\Exception\FormatException;
+namespace Tests;
+
 use Orchestra\Testbench\TestCase;
 
 class ImageServeTestCase extends TestCase
@@ -11,18 +11,18 @@ class ImageServeTestCase extends TestCase
     protected $imageSize;
     protected $imageSmallSize;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->image = $this->app['image'];
-        $this->imageSize = getimagesize(public_path().$this->imagePath);
-        $this->imageSmallSize = getimagesize(public_path().$this->imageSmallPath);
+        $this->imageSize = getimagesize(public_path() . $this->imagePath);
+        $this->imageSmallSize = getimagesize(public_path() . $this->imageSmallPath);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
-        $customPath = $this->app['path.public'].'/custom';
+        $customPath = $this->app['path.public'] . '/custom';
         $this->app['config']->set('image.write_path', $customPath);
 
         $this->image->deleteManipulated($this->imagePath);
@@ -42,7 +42,7 @@ class ImageServeTestCase extends TestCase
 
         $this->assertTrue($response->isOk());
 
-        $imagePath = $this->app['path.public'].'/'.basename($url);
+        $imagePath = $this->app['path.public'] . '/' . basename($url);
         $this->assertFileExists($imagePath);
 
         $sizeManipulated = getimagesize($imagePath);
@@ -67,7 +67,7 @@ class ImageServeTestCase extends TestCase
 
         $this->assertTrue($response->isOk());
 
-        $imagePath = public_path($customPath.'/'.basename($url));
+        $imagePath = public_path($customPath . '/' . basename($url));
         $this->assertFileExists($imagePath);
 
         $sizeManipulated = getimagesize($imagePath);
@@ -155,9 +155,7 @@ class ImageServeTestCase extends TestCase
         try {
             $response = $this->call('GET', $url);
             $this->assertSame(404, $response->getStatusCode());
-        }
-        catch(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e)
-        {
+        } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e) {
             $this->assertInstanceOf('\Symfony\Component\HttpKernel\Exception\NotFoundHttpException', $e);
         }
     }
@@ -172,9 +170,7 @@ class ImageServeTestCase extends TestCase
         try {
             $response = $this->call('GET', $url);
             $this->assertSame(404, $response->getStatusCode());
-        }
-        catch(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e)
-        {
+        } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e) {
             $this->assertInstanceOf('\Symfony\Component\HttpKernel\Exception\NotFoundHttpException', $e);
         }
     }
@@ -188,9 +184,7 @@ class ImageServeTestCase extends TestCase
         try {
             $response = $this->call('GET', $url);
             $this->assertSame(500, $response->getStatusCode());
-        }
-        catch(\Symfony\Component\HttpKernel\Exception\HttpException $e)
-        {
+        } catch (\Symfony\Component\HttpKernel\Exception\HttpException $e) {
             $this->assertInstanceOf('\Symfony\Component\HttpKernel\Exception\HttpException', $e);
         }
     }
@@ -198,12 +192,12 @@ class ImageServeTestCase extends TestCase
     /**
      * Define environment setup.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      * @return void
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app->instance('path.public', __DIR__.'/fixture');
+        $app->instance('path.public', __DIR__ . '/fixture');
     }
 
     protected function getPackageProviders($app)

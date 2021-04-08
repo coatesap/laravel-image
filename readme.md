@@ -1,8 +1,11 @@
-# Modifcations for Laravel 6 - 8
-- Changed Manager variable $app => $container for new [format](https://laravel.com/docs/8.x/upgrade#manager-app-property)
+# Fork of folklore/image for PHP 7.4+ and Laravel 8+
+This brings the package up-to-date with the latest dependencies + modern PHPUnit tests.
 
 # Laravel Image
-Laravel Image is an image manipulation package for Laravel 4 and 5 based on the [PHP Imagine library](https://github.com/avalanche123/Imagine). It is inspired by [Croppa](https://github.com/BKWLD/croppa) as it can use specially formatted urls to do the manipulations. It supports basic image manipulations such as resize, crop, rotation and flip. It also supports effects such as negative, grayscale, gamma, colorize and blur. You can also define custom filters for greater flexibility.
+Laravel Image is an image manipulation package for Laravel based on the [PHP Imagine library](https://github.com/avalanche123/Imagine). 
+It is inspired by [Croppa](https://github.com/BKWLD/croppa) as it can use specially formatted urls to do the manipulations. 
+It supports basic image manipulations such as resize, crop, rotation and flip. It also supports effects such as negative, grayscale, gamma, colorize and blur. 
+You can also define custom filters for greater flexibility.
 
 [![Latest Stable Version](https://poser.pugx.org/folklore/image/v/stable.svg)](https://packagist.org/packages/folklore/image)
 [![Build Status](https://travis-ci.org/Folkloreatelier/laravel-image.png?branch=master)](https://travis-ci.org/Folkloreatelier/laravel-image)
@@ -21,7 +24,7 @@ To create a 300x300 version of this image in black and white, you use the URL:
 To help you generate the URL to an image, you can use the `Image::url()` method
 
 ```php
-Image::url('/uploads/photo.jpg',300,300,array('crop','grayscale'));
+\Image::url('/uploads/photo.jpg',300,300,array('crop','grayscale'));
 ```
 
 or
@@ -33,7 +36,7 @@ or
 Alternatively, you can programmatically manipulate images using the `Image::make()` method. It supports all the same options as the `Image::url()` method.
 
 ```php
-Image::make('/uploads/photo.jpg',array(
+\Image::make('/uploads/photo.jpg',array(
 	'width' => 300,
 	'height' => 300,
 	'grayscale' => true
@@ -43,7 +46,7 @@ Image::make('/uploads/photo.jpg',array(
 or use directly the Imagine library
 
 ```php
-$thumbnail = Image::open('/uploads/photo.jpg')
+$thumbnail = \Image::open('/uploads/photo.jpg')
 			->thumbnail(new Imagine\Image\Box(300,300));
 
 $thumbnail->effects()->grayscale();
@@ -53,7 +56,8 @@ $thumbnail->save('/path/to/the/thumbnail.jpg');
 
 ## Features
 
-This package use [Imagine](https://github.com/avalanche123/Imagine) for image manipulation. Imagine is compatible with GD2, Imagick, Gmagick and supports a lot of [features](http://imagine.readthedocs.org/en/latest/).
+This package use [Imagine](https://github.com/avalanche123/Imagine) for image manipulation. 
+Imagine is compatible with GD2, Imagick, Gmagick and supports a lot of [features](http://imagine.readthedocs.org/en/latest/).
 
 This package also provides some common filters ready to use ([more on this](https://github.com/Folkloreatelier/laravel-image/wiki/Image-filters)):
 - Resize
@@ -70,17 +74,9 @@ This package also provides some common filters ready to use ([more on this](http
 
  Laravel  | Image
 :---------|:----------
- 4.2.x    | 0.1.x
- 5.0.x    | 0.2.x
- 5.1.x    | 0.3.x
- 5.2.x    | 0.3.x
+ 8.x.x    | 1.x.x
 
 ## Installation
-
-#### Dependencies:
-
-* [Laravel 5.x](https://github.com/laravel/laravel)
-* [Imagine 0.6.x](https://github.com/avalanche123/Imagine)
 
 #### Server Requirements:
 
@@ -89,44 +85,28 @@ This package also provides some common filters ready to use ([more on this](http
 
 #### Installation:
 
-**1-** Require the package via Composer in your `composer.json`.
-```json
-{
-	"require": {
-		"folklore/image": "0.3.*"
-	}
-}
-```
-
-**2-** Run Composer to install or update the new requirement.
-
+**1-** Require the package via Composer.
 ```bash
-$ composer install
+composer require coatesap/laravel-image
 ```
 
-or
-
-```bash
-$ composer update
-```
-
-**3-** Add the service provider to your `app/config/app.php` file
+**2-** Add the service provider to your `app/config/app.php` file
 ```php
 'Folklore\Image\ImageServiceProvider',
 ```
 
-**4-** Add the facade to your `app/config/app.php` file
+**3-** Add the facade to your `app/config/app.php` file
 ```php
 'Image' => 'Folklore\Image\Facades\Image',
 ```
 
-**5-** Publish the configuration file and public files
+**4-** Publish the configuration file and public files
 
 ```bash
 $ php artisan vendor:publish --provider="Folklore\Image\ImageServiceProvider"
 ```
 
-**6-** Review the configuration file
+**5-** Review the configuration file
 
 ```
 app/config/image.php

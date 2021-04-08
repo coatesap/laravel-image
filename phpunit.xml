@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="false"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+         backupGlobals="false"
          backupStaticAttributes="false"
          bootstrap="vendor/autoload.php"
          colors="true"
@@ -9,6 +11,14 @@
          processIsolation="false"
          stopOnFailure="false"
 >
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">./src/Folklore/Image</directory>
+        </include>
+        <report>
+            <clover outputFile="coverage/clover.xml"/>
+        </report>
+    </coverage>
     <testsuites>
         <testsuite name="Folklore/Image Test Suite">
             <file>./tests/ImageTestCase.php</file>
@@ -16,12 +26,5 @@
             <file>./tests/ImageProxyTestCase.php</file>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src/Folklore/Image</directory>
-        </whitelist>
-    </filter>
-    <logging>
-        <log type="coverage-clover" target="coverage/clover.xml"/>
-    </logging>
+    <logging/>
 </phpunit>

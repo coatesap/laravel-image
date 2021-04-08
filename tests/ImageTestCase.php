@@ -1,7 +1,7 @@
-<?php namespace Folklore\Image\Tests;
+<?php
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Folklore\Image\Exception\FormatException;
+namespace Tests;
+
 use Orchestra\Testbench\TestCase;
 
 class ImageTestCase extends TestCase
@@ -11,22 +11,22 @@ class ImageTestCase extends TestCase
     protected $imageSize;
     protected $imageSmallSize;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        
+
         $this->image = $this->app['image'];
-        $this->imageSize = getimagesize(public_path().$this->imagePath);
-        $this->imageSmallSize = getimagesize(public_path().$this->imageSmallPath);
+        $this->imageSize = getimagesize(public_path() . $this->imagePath);
+        $this->imageSmallSize = getimagesize(public_path() . $this->imageSmallPath);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
-        $customPath = $this->app['path.public'].'/custom';
+        $customPath = $this->app['path.public'] . '/custom';
         $this->app['config']->set('image.write_path', $customPath);
-        
+
         $this->image->deleteManipulated($this->imagePath);
-        
+
         parent::tearDown();
     }
 
@@ -60,7 +60,7 @@ class ImageTestCase extends TestCase
             $url = $this->image->url($this->imagePath, 300, 300, array_merge($pattern, $options));
 
             //Check against pattern
-            $urlMatch = preg_match('#'.$this->image->pattern($pattern['url_parameter']).'#', $url, $matches);
+            $urlMatch = preg_match('#' . $this->image->pattern($pattern['url_parameter']) . '#', $url, $matches);
             $this->assertEquals($urlMatch, 1);
 
             //Check path
@@ -78,16 +78,16 @@ class ImageTestCase extends TestCase
 
         }
     }
-    
+
     /**
      * Define environment setup.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      * @return void
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app->instance('path.public', __DIR__.'/fixture');
+        $app->instance('path.public', __DIR__ . '/fixture');
     }
 
     protected function getPackageProviders($app)
